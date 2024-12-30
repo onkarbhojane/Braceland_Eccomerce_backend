@@ -1,0 +1,34 @@
+services:
+  # Backend Service (Node.js + Express)
+  - type: web
+    name: backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    branch: main
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        value: <your-mongodb-uri> # Replace with your MongoDB URI
+      - key: JWT_SECRET
+        value: <your-jwt-secret> # Replace with your secret key for JWT authentication
+    autoDeploy: true
+    region: oregon
+
+  # Frontend Service (React)
+  - type: web
+    name: frontend
+    env: static
+    buildCommand: npm install && npm run build
+    startCommand: npx serve build
+    branch: main
+    autoDeploy: true
+    region: oregon
+
+  # Database Service (MongoDB)
+  - type: database
+    name: mongodb
+    env: mongodb
+    plan: free
+    region: oregon
