@@ -10,7 +10,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: MONGODB_URI
-        value: <your-mongodb-uri> # Replace with your MongoDB URI
+        value: <your-mongodb-uri> # Replace with your MongoDB URI from Atlas or another provider
       - key: JWT_SECRET
         value: <your-jwt-secret> # Replace with your secret key for JWT authentication
     autoDeploy: true
@@ -24,11 +24,4 @@ services:
     startCommand: npx serve build
     branch: main
     autoDeploy: true
-    region: oregon
-
-  # Database Service (MongoDB)
-  - type: database
-    name: mongodb
-    env: mongodb
-    plan: free
     region: oregon
